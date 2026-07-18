@@ -1,0 +1,1099 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tato &amp; Khrystyna — 17 September 2026</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Pinyon+Script&family=Cinzel:wght@400;500;600&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=PT+Serif:ital,wght@0,400;0,700;1,400&family=Noto+Serif+Georgian:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --cream:#F6EEE7;
+    --cream-deep:#EFE2D8;
+    --paper:#F4EDE4;
+    --taupe:#C9BAB2;
+    --blush:#D8B5B7;
+    --salmon:#E9998E;
+    --terracotta:#C9713E;
+    --terracotta-deep:#A85A30;
+    --plum:#5C2438;
+    --plum-deep:#3E1726;
+    --brick:#8C2A26;
+    --ink:#3A1A17;
+    /* PT Serif covers Cyrillic, Noto Serif Georgian covers Georgian — the browser
+       automatically falls back per-character, so Latin still renders in the
+       primary display fonts while Russian/Georgian text stays legible & elegant */
+    --font-script:'Pinyon Script', 'PT Serif', 'Noto Serif Georgian', cursive;
+    --font-heading:'Cinzel', 'PT Serif', 'Noto Serif Georgian', serif;
+    --font-body:'Cormorant Garamond', 'PT Serif', 'Noto Serif Georgian', serif;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--cream);
+    color:var(--ink);
+    font-family:var(--font-body);
+    overflow-x:hidden;
+  }
+  .script{ font-family:var(--font-script); font-weight:400; }
+  .trajan{ font-family:var(--font-heading); text-transform:uppercase; letter-spacing:.28em; }
+
+  ::selection{ background:var(--terracotta); color:var(--cream); }
+
+  a, button{ -webkit-tap-highlight-color: transparent; }
+
+  /* ================= LANGUAGE SWITCHER ================= */
+  .lang-switcher{
+    position:fixed; top:clamp(.8rem,2.5vw,1.2rem); right:clamp(.8rem,2.5vw,1.2rem); z-index:300;
+    display:flex; gap:.2rem; background:rgba(246,238,231,.9); backdrop-filter:blur(6px);
+    border:1px solid rgba(92,36,56,.18); border-radius:999px; padding:.25rem;
+    box-shadow:0 10px 24px -10px rgba(60,20,20,.35);
+  }
+  .lang-btn{
+    font-family:var(--font-heading); font-size:.62rem; font-weight:600; letter-spacing:.08em;
+    padding:.45em .85em; border-radius:999px; border:none; background:transparent; color:var(--plum);
+    cursor:pointer; transition:background-color .25s ease, color .25s ease;
+  }
+  .lang-btn:hover{ background:rgba(92,36,56,.08); }
+  .lang-btn.active{ background:var(--plum); color:var(--paper); }
+  .lang-btn.active:hover{ background:var(--plum); }
+  @media (max-width:420px){
+    .lang-btn{ padding:.4em .6em; font-size:.58rem; }
+  }
+
+  .venue-caption{ font-family:var(--font-heading); letter-spacing:.4em; text-transform:uppercase; color:var(--plum); }
+
+  /* ================= HERO (auto zoom-out reveal on load) ================= */
+  .hero{ position:relative; width:100%; height:100svh; }
+  /* sits above .hero-sticky (outside the clip-path), on the light paper-toned
+     area at the top of the hero — dark text for contrast against that light tone */
+  .hero-top-label{
+    position:absolute; top:clamp(1.4rem,4vw,2.2rem); left:0; right:0; z-index:5;
+    text-align:center; color:var(--plum);
+    font-family:var(--font-heading); font-weight:600; font-size:clamp(1.05rem,3.2vw,1.6rem); letter-spacing:.38em; text-transform:uppercase;
+  }
+  .hero-sticky{
+    position:relative; height:100%; width:100%; overflow:hidden;
+    background-color:#F9F2EA; /* exact sampled paper color from house-sketch.jpg's edges */
+    display:flex; align-items:flex-end; justify-content:center;
+    clip-path:polygon(25% 25%, 75% 25%, 75% 75%, 25% 75%);
+    transition:clip-path 2.4s cubic-bezier(.65,0,.35,1);
+  }
+  #hero.zoomed .hero-sticky{
+    clip-path:polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
+  }
+  /* .hero-bg-frame is sized in JS to exactly match the image's contain-fit box
+     (aspect-ratio aware). With no header/footer bands anymore, the picture fades
+     on all four sides via an elliptical vignette so it blends smoothly into the
+     page instead of stopping at a hard rectangular edge. */
+  .hero-bg-frame{
+    position:absolute; inset:0; margin:auto; z-index:0;
+    transform:scale(1.7); transition:transform 2.4s cubic-bezier(.65,0,.35,1), width .2s ease, height .2s ease;
+    -webkit-mask-image:radial-gradient(ellipse 62% 62% at 50% 50%, black 0%, black 55%, transparent 100%);
+    mask-image:radial-gradient(ellipse 62% 62% at 50% 50%, black 0%, black 55%, transparent 100%);
+  }
+  #hero.zoomed .hero-bg-frame{ transform:scale(1.08); }
+  .hero-bg{ display:block; width:100%; height:100%; object-fit:fill; }
+  .hero-sticky::before{
+    content:''; position:absolute; inset:0; z-index:1; pointer-events:none;
+    background:linear-gradient(180deg, rgba(62,23,38,.05) 0%, rgba(62,23,38,.15) 40%, rgba(62,23,38,.85) 100%);
+    opacity:0; transition:opacity 1.4s ease .6s;
+  }
+  #hero.zoomed .hero-sticky::before{ opacity:1; }
+
+  .hero-content{
+    position:relative; z-index:2; text-align:center; color:var(--paper);
+    padding:0 1.5rem clamp(6.5rem,14vw,8.5rem);
+    opacity:0; transform:translateY(16px); transition:opacity 1s ease .9s, transform 1s ease .9s;
+  }
+  #hero.zoomed .hero-content{ opacity:1; transform:translateY(0); }
+  .hero-content .names{ font-family:var(--font-script); font-size:clamp(3.4rem,10vw,7rem); line-height:1; text-shadow:0 6px 30px rgba(0,0,0,.4); }
+  .hero-content .amp{ display:block; font-size:.55em; opacity:.85; margin:.05em 0; }
+  .hero-content .venue-caption{ margin-top:1.2em; font-size:.85rem; color:var(--paper); }
+  .hero-content .meta{ margin-top:.6em; font-family:var(--font-heading); font-size:clamp(.68rem,1.5vw,.85rem); letter-spacing:.38em; text-transform:uppercase; }
+
+  .scroll-cue{
+    position:absolute; left:50%; bottom:clamp(1.2rem,3vw,1.8rem); transform:translateX(-50%); z-index:3;
+    display:flex; flex-direction:column; align-items:center; gap:.7rem; color:var(--paper); opacity:0;
+    transition:opacity 1s ease 1.4s;
+  }
+  #hero.zoomed .scroll-cue{ opacity:1; animation:scrollCueFloat 2.4s ease-in-out 2.4s infinite; }
+  .scroll-cue span{ font-family:var(--font-heading); font-size:.68rem; letter-spacing:.42em; text-transform:uppercase; text-shadow:0 2px 12px rgba(0,0,0,.45); }
+  .scroll-mouse{
+    width:26px; height:42px; border:2px solid var(--paper); border-radius:14px; position:relative;
+    box-shadow:0 2px 14px rgba(0,0,0,.35);
+  }
+  .scroll-mouse::before{
+    content:''; position:absolute; top:6px; left:50%; width:4px; height:9px; border-radius:2px;
+    background:var(--paper); transform:translate(-50%,0); animation:scrollWheel 1.7s ease-in-out infinite;
+  }
+  @keyframes scrollWheel{
+    0%{ transform:translate(-50%,0); opacity:1; }
+    55%{ transform:translate(-50%,16px); opacity:0; }
+    56%{ transform:translate(-50%,0); opacity:0; }
+    100%{ transform:translate(-50%,0); opacity:1; }
+  }
+  @keyframes scrollCueFloat{
+    0%,100%{ transform:translate(-50%,0); }
+    50%{ transform:translate(-50%,8px); }
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    .hero-sticky, .hero-bg-frame, .hero-sticky::before, .hero-content, .scroll-cue{ transition-duration:.01ms !important; }
+    .scroll-cue, .scroll-mouse::before{ animation:none !important; }
+  }
+
+  /* ================= SHARED SECTION STYLES ================= */
+  section{ position:relative; }
+  .section-pad{ padding:clamp(4rem,10vw,7.5rem) clamp(1.4rem,6vw,3rem); }
+  .eyebrow-label{ font-family:var(--font-heading); font-size:.7rem; letter-spacing:.5em; text-transform:uppercase; color:var(--terracotta-deep); }
+  .h2-script{ font-family:var(--font-script); font-size:clamp(2.6rem,6vw,4rem); color:var(--plum); line-height:1; }
+  .divider{ width:64px; height:1px; background:linear-gradient(90deg, transparent, var(--terracotta), transparent); margin:1.6rem auto; }
+  .divider.left{ margin-left:0; }
+
+  .btn{
+    display:inline-flex; align-items:center; gap:.6em; font-family:var(--font-heading); font-size:.72rem;
+    letter-spacing:.35em; text-transform:uppercase; padding:1em 2.2em; border-radius:999px;
+    background:var(--plum); color:var(--paper); border:1px solid var(--plum);
+    box-shadow:0 10px 24px -10px rgba(92,36,56,.55);
+    transition:transform .45s cubic-bezier(.16,1,.3,1), box-shadow .45s, background-color .35s, color .35s;
+    cursor:pointer;
+  }
+  .btn:hover{ transform:translateY(-2px); box-shadow:0 16px 30px -10px rgba(92,36,56,.6); background:var(--plum-deep); }
+  .btn:active{ transform:translateY(0); }
+  .btn:focus-visible{ outline:2px solid var(--terracotta); outline-offset:3px; }
+  .btn.outline{ background:transparent; color:var(--plum); border-color:rgba(92,36,56,.4); box-shadow:none; }
+  .btn.outline:hover{ background:rgba(92,36,56,.06); border-color:var(--plum); }
+
+  /* card elevation system */
+  .surface{ background:var(--paper); }
+  .surface-raised{
+    background:#fff; border-radius:2px;
+    box-shadow:0 1px 2px rgba(60,20,20,.04), 0 12px 28px -14px rgba(60,20,20,.18);
+  }
+  .surface-floating{
+    background:#fff; border-radius:2px;
+    box-shadow:0 2px 6px rgba(60,20,20,.06), 0 24px 50px -18px rgba(60,20,20,.3);
+  }
+
+  /* reveal-on-scroll */
+  .reveal-up{ opacity:0; transform:translateY(28px); transition:opacity .9s cubic-bezier(.16,1,.3,1), transform .9s cubic-bezier(.16,1,.3,1); }
+  .reveal-up.in{ opacity:1; transform:translateY(0); }
+
+  /* ================= INTRO NOTE ================= */
+  .ornament-line{ display:flex; align-items:center; justify-content:center; gap:.8rem; }
+  .ornament-line svg{ opacity:.55; }
+
+  /* ================= DETAILS CARDS ================= */
+  .detail-card{ position:relative; padding:clamp(2.4rem,5vw,3.4rem) clamp(1.6rem,4vw,2.4rem); text-align:center; }
+  .detail-card .icon{ width:46px; height:46px; margin:0 auto 1.4rem; color:var(--terracotta-deep); }
+  .detail-card h3{ font-family:var(--font-heading); font-size:1.05rem; letter-spacing:.28em; text-transform:uppercase; color:var(--plum); margin-bottom:.9rem; }
+  .detail-card p{ font-size:1.15rem; line-height:1.7; color:#5a4440; }
+  .detail-card .tag{ display:inline-block; margin-top:1.2rem; font-family:var(--font-heading); font-size:.62rem; letter-spacing:.35em; text-transform:uppercase; color:var(--terracotta-deep); border-top:1px solid rgba(200,113,62,.35); padding-top:.9rem; }
+
+  /* ================= TIMELINE ================= */
+  .timeline{ position:relative; max-width:560px; margin:0 auto; }
+  .timeline::before{ content:''; position:absolute; left:50%; top:4px; bottom:4px; width:1px; background:linear-gradient(180deg, transparent, rgba(92,36,56,.3) 6%, rgba(92,36,56,.3) 94%, transparent); transform:translateX(-50%); }
+  .t-item{
+    position:relative; display:grid; grid-template-columns:1fr auto 1fr;
+    align-items:center; column-gap:clamp(1rem,3.5vw,2rem);
+    padding:clamp(1.1rem,3vw,1.5rem) 0;
+  }
+  .t-item:first-child{ padding-top:0; }
+  .t-item:last-child{ padding-bottom:0; }
+  .t-dot{ justify-self:center; width:9px; height:9px; border-radius:50%; background:var(--terracotta); box-shadow:0 0 0 5px var(--cream), 0 0 0 6px rgba(92,36,56,.25); }
+  .t-time{ text-align:right; font-family:var(--font-heading); font-size:.72rem; letter-spacing:.22em; text-transform:uppercase; color:var(--terracotta-deep); }
+  .t-label{ text-align:left; font-size:1.2rem; line-height:1.4; color:var(--plum); }
+
+  /* ================= COUNTDOWN ================= */
+  .countdown-band{
+    background:linear-gradient(155deg, var(--plum) 0%, var(--plum-deep) 100%);
+    color:var(--paper); position:relative; overflow:hidden;
+  }
+  .countdown-band::before{
+    content:''; position:absolute; inset:0; opacity:.5;
+    background:radial-gradient(60% 80% at 15% 10%, rgba(233,153,142,.18), transparent 60%), radial-gradient(50% 70% at 90% 90%, rgba(201,113,62,.2), transparent 60%);
+  }
+  .cd-grid{ display:grid; grid-template-columns:repeat(4,1fr); gap:clamp(.8rem,3vw,2.4rem); max-width:640px; margin:0 auto; position:relative; z-index:1; }
+  .cd-num{ font-family:var(--font-heading); font-size:clamp(2rem,6vw,3.4rem); font-weight:600; line-height:1; }
+  .cd-label{ font-family:var(--font-heading); font-size:.6rem; letter-spacing:.3em; text-transform:uppercase; opacity:.75; margin-top:.7rem; }
+
+  /* ================= RSVP ================= */
+  .rsvp-deadline{
+    font-family:var(--font-heading); font-size:clamp(1.4rem,4vw,1.9rem); font-weight:600;
+    letter-spacing:.06em; color:var(--plum);
+  }
+  .field{
+    width:100%; background:transparent; border:none; border-bottom:1px solid rgba(92,36,56,.3);
+    padding:.9rem .2rem; font-family:var(--font-body); font-size:1.15rem; color:var(--ink);
+    transition:border-color .3s ease;
+  }
+  .field::placeholder{ color:#9c8a86; text-transform:none; letter-spacing:0; }
+  .field:focus{ outline:none; border-color:var(--terracotta); }
+  .field-label{ font-family:var(--font-heading); font-size:.62rem; letter-spacing:.3em; text-transform:uppercase; color:var(--plum); display:block; margin-bottom:.6rem; }
+
+  .radio-pill{ display:inline-flex; max-width:100%; border:1px solid rgba(92,36,56,.3); border-radius:999px; overflow:hidden; }
+  .radio-pill input{ display:none; }
+  .radio-pill label{ padding:.75em 1.6em; font-family:var(--font-heading); font-size:.68rem; letter-spacing:.25em; text-transform:uppercase; text-align:center; cursor:pointer; color:var(--plum); transition:background-color .3s, color .3s; }
+  .radio-pill input:checked + label{ background:var(--plum); color:var(--paper); }
+  @media (max-width:420px){
+    .radio-pill{ display:flex; flex-direction:column; width:100%; border-radius:14px; }
+    .radio-pill label{ padding:.85em 1rem; letter-spacing:.15em; border-bottom:1px solid rgba(92,36,56,.2); }
+    .radio-pill label:last-of-type{ border-bottom:none; }
+  }
+
+  .field-question{ font-size:1.1rem; line-height:1.6; color:var(--ink); display:block; margin-bottom:.8rem; }
+  .add-guest-btn{
+    display:inline-block; margin-top:1.1rem; background:none; padding:0; cursor:pointer;
+    font-family:var(--font-heading); font-size:.66rem; letter-spacing:.25em; text-transform:uppercase;
+    color:var(--terracotta-deep); border:none; border-bottom:1px solid rgba(200,113,62,.4);
+    transition:color .3s ease, border-color .3s ease;
+  }
+  .add-guest-btn:hover{ color:var(--plum); border-color:var(--plum); }
+
+  #rsvpForm{ transition:opacity .5s cubic-bezier(.16,1,.3,1), transform .5s cubic-bezier(.16,1,.3,1); }
+  #rsvpForm.rsvp-hide{ opacity:0; transform:translateY(-18px) scale(.97); pointer-events:none; }
+
+  .rsvp-success{
+    text-align:center; padding:clamp(3rem,8vw,4.5rem) clamp(1.6rem,5vw,3rem);
+    animation:rsvpSuccessIn .9s cubic-bezier(.16,1,.3,1);
+  }
+  @keyframes rsvpSuccessIn{
+    0%{ opacity:0; transform:translateY(24px) scale(.95); }
+    100%{ opacity:1; transform:translateY(0) scale(1); }
+  }
+  .rsvp-success-check{
+    width:76px; height:76px; margin:0 auto 1.6rem; border-radius:50%;
+    background:var(--plum); display:flex; align-items:center; justify-content:center;
+    box-shadow:0 16px 34px -12px rgba(92,36,56,.55);
+    animation:rsvpCheckPop .6s cubic-bezier(.34,1.56,.64,1) .15s both;
+  }
+  @keyframes rsvpCheckPop{ 0%{ transform:scale(0); } 100%{ transform:scale(1); } }
+  .rsvp-success-check svg{ width:40px; height:40px; overflow:visible; }
+  .rsvp-success-check svg path{
+    fill:none; stroke:var(--paper); stroke-width:4; stroke-linecap:round; stroke-linejoin:round;
+    stroke-dasharray:34; stroke-dashoffset:34;
+    animation:rsvpCheckDraw .5s ease .55s forwards;
+  }
+  @keyframes rsvpCheckDraw{ to{ stroke-dashoffset:0; } }
+  .rsvp-success .h2-script{ animation:rsvpFadeUp .7s ease .3s both; }
+  .rsvp-success-text{
+    font-size:1.2rem; line-height:1.7; color:#5a4440; margin-top:.7rem;
+    max-width:26rem; margin-left:auto; margin-right:auto;
+    animation:rsvpFadeUp .7s ease .45s both;
+  }
+  @keyframes rsvpFadeUp{ 0%{ opacity:0; transform:translateY(10px); } 100%{ opacity:1; transform:translateY(0); } }
+  @media (prefers-reduced-motion: reduce){
+    #rsvpForm, .rsvp-success, .rsvp-success-check, .rsvp-success-check svg path, .rsvp-success .h2-script, .rsvp-success-text{
+      animation-duration:.01ms !important; transition-duration:.01ms !important;
+    }
+  }
+  .conditional-block{
+    margin-top:1.1rem; padding:1.1rem 1.3rem; background:var(--cream-deep);
+    border-left:2px solid var(--terracotta); border-radius:2px;
+  }
+  .conditional-block[hidden]{ display:none; }
+  .conditional-note{ font-size:1.05rem; line-height:1.6; color:#5a4440; }
+  .conditional-note strong{ color:var(--plum); font-weight:600; }
+  .hotel-list{ list-style:none; margin:1rem 0 0; padding:0; display:flex; flex-direction:column; gap:.7rem; }
+  .hotel-list li{ display:flex; flex-wrap:wrap; align-items:baseline; gap:.5rem; }
+  .hotel-tag{
+    font-family:var(--font-heading); font-size:.58rem; letter-spacing:.2em; text-transform:uppercase; color:var(--terracotta-deep);
+    background:rgba(200,113,62,.14); padding:.3em .7em; border-radius:999px; white-space:nowrap;
+  }
+  .hotel-list a{ color:var(--plum); text-decoration:none; border-bottom:1px solid rgba(92,36,56,.3); font-size:1.05rem; transition:border-color .3s, color .3s; }
+  .hotel-list a:hover{ color:var(--terracotta-deep); border-color:var(--terracotta-deep); }
+
+  /* footer */
+  .footer{ background:var(--plum-deep); color:var(--paper); }
+  .monogram{ font-family:var(--font-script); font-size:clamp(2.4rem,6vw,3.4rem); }
+
+  ::-webkit-scrollbar{ width:10px; }
+  ::-webkit-scrollbar-track{ background:var(--cream); }
+  ::-webkit-scrollbar-thumb{ background:var(--taupe); border-radius:6px; }
+
+  /* ================= THEME PREVIEW TOOL (hidden — not in use, code kept in case it's needed again) ================= */
+  .theme-toggle{
+    display:none;
+    position:fixed; right:1.2rem; bottom:1.2rem; z-index:200;
+    width:48px; height:48px; border-radius:50%; border:none; cursor:pointer;
+    background:#1f1f1f; color:#fff; font-size:1.3rem; line-height:1;
+    align-items:center; justify-content:center;
+    box-shadow:0 8px 24px -8px rgba(0,0,0,.5);
+    transition:transform .3s ease;
+  }
+  .theme-toggle:hover{ transform:scale(1.06); }
+  .theme-panel{
+    position:fixed; right:1.2rem; bottom:5rem; z-index:200;
+    width:min(90vw,320px); max-height:70vh; overflow-y:auto;
+    background:#1f1f1f; color:#f2f2f2; border-radius:12px;
+    padding:1.2rem; box-shadow:0 20px 50px -12px rgba(0,0,0,.55);
+    font-family:system-ui, -apple-system, sans-serif; font-size:.82rem;
+    display:none;
+  }
+  .theme-panel.open{ display:block; }
+  .theme-panel h4{ margin:0 0 .2rem; font-size:.95rem; font-weight:600; }
+  .theme-panel .theme-sub{ margin:0 0 1rem; opacity:.6; font-size:.72rem; line-height:1.4; }
+  .theme-row{ display:flex; align-items:center; justify-content:space-between; gap:.6rem; padding:.4rem 0; border-bottom:1px solid rgba(255,255,255,.08); }
+  .theme-row:last-of-type{ border-bottom:none; }
+  .theme-row label{ opacity:.85; }
+  .theme-row input[type="color"]{
+    width:34px; height:26px; padding:0; border:1px solid rgba(255,255,255,.25); border-radius:6px; background:none; cursor:pointer;
+  }
+  .theme-actions{ display:flex; gap:.5rem; margin-top:1rem; }
+  .theme-actions button{
+    flex:1; font-family:inherit; font-size:.72rem; padding:.55em .8em; border-radius:7px; border:1px solid rgba(255,255,255,.25);
+    background:transparent; color:#f2f2f2; cursor:pointer; transition:background-color .2s;
+  }
+  .theme-actions button:hover{ background:rgba(255,255,255,.1); }
+  .theme-copy-box{
+    width:100%; margin-top:.7rem; font-family:'SFMono-Regular',Consolas,monospace; font-size:.68rem; line-height:1.5;
+    background:#111; color:#9ae6b4; border:1px solid rgba(255,255,255,.15); border-radius:7px; padding:.6rem; resize:vertical;
+    display:none;
+  }
+  .theme-copy-box.open{ display:block; }
+</style>
+</head>
+<body class="antialiased">
+
+<!-- ================= LANGUAGE SWITCHER ================= -->
+<div class="lang-switcher" id="langSwitcher">
+  <button type="button" class="lang-btn" data-lang="en">EN</button>
+  <button type="button" class="lang-btn" data-lang="uk">UA</button>
+  <button type="button" class="lang-btn" data-lang="ka">GEO</button>
+</div>
+
+<!-- ================= HERO (auto zoom-out reveal) ================= -->
+<header class="hero" id="hero">
+  <p class="hero-top-label" data-i18n="hero.topLabel">Wedding Invitation</p>
+  <div class="hero-sticky" id="heroSticky">
+    <div class="hero-bg-frame" id="heroBgFrame">
+      <img class="hero-bg" id="heroBg" src="assets/house-sketch.jpg" alt="Sketch of Vazisubani Estate">
+    </div>
+    <div class="hero-content" id="heroContent">
+      <p class="names">Tato<span class="amp script">&amp;</span>Khrystyna</p>
+      <p class="venue-caption" data-i18n="hero.venue">Vazisubani Estate</p>
+      <p class="meta" data-i18n="hero.date">17 September 2026</p>
+    </div>
+    <div class="scroll-cue" id="scrollCue">
+      <span data-i18n="hero.scroll">Scroll</span>
+      <div class="scroll-mouse"></div>
+    </div>
+  </div>
+</header>
+
+<!-- ================= WELCOME NOTE ================= -->
+<section class="surface section-pad">
+  <div class="max-w-2xl mx-auto text-center">
+    <p class="eyebrow-label" data-i18n="welcome.eyebrow">Save the Date</p>
+    <div class="ornament-line my-6">
+      <svg width="26" height="10" viewBox="0 0 26 10"><path d="M0 5H26M13 0V10" stroke="#C9713E" stroke-width="1"/></svg>
+    </div>
+    <h2 class="h2-script" data-i18n="welcome.heading">With hearts full of love</h2>
+    <p class="mt-8 text-[1.25rem] leading-[1.8] text-[#5a4440] normal-case tracking-normal max-w-xl mx-auto" data-i18n="welcome.body">
+      Tato and Khrystyna joyfully invite you to celebrate the beginning of our forever.
+      Join us for an evening of love, laughter, and unforgettable memories set among the vineyards
+      of Vazisubani Estate.
+    </p>
+    <p class="mt-6 text-[1.5rem] italic leading-[1.6] normal-case tracking-normal max-w-xl mx-auto font-medium" style="color:var(--terracotta-deep);" data-i18n="welcome.gift">
+      Please do not bring any presents &mdash; your presence at our wedding is the gift for us.
+    </p>
+  </div>
+</section>
+
+<!-- ================= DETAILS ================= -->
+<section class="section-pad" style="background:var(--cream-deep);">
+  <div class="max-w-5xl mx-auto text-center mb-16">
+    <p class="eyebrow-label" data-i18n="details.eyebrow">The Details</p>
+    <h2 class="h2-script mt-4" data-i18n="details.heading">When &amp; Where</h2>
+  </div>
+  <div class="max-w-5xl mx-auto grid sm:grid-cols-3 gap-6 sm:gap-8">
+    <div class="detail-card surface-raised reveal-up">
+      <svg class="icon" viewBox="0 0 48 48" fill="none"><rect x="8" y="10" width="32" height="30" rx="1" stroke="currentColor" stroke-width="1.4"/><path d="M8 18H40" stroke="currentColor" stroke-width="1.4"/><path d="M16 6V12M32 6V12" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/><circle cx="24" cy="29" r="4" stroke="currentColor" stroke-width="1.2"/></svg>
+      <h3 data-i18n="details.dateTitle">The Date</h3>
+      <p data-i18n-html="details.dateBody">Thursday<br>17 September 2026</p>
+      <span class="tag" data-i18n="details.dateTag">Mark your calendar</span>
+    </div>
+    <div class="detail-card surface-raised reveal-up" style="transition-delay:.1s">
+      <svg class="icon" viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="16" stroke="currentColor" stroke-width="1.4"/><path d="M24 15V24L30 28" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
+      <h3 data-i18n="details.ceremonyTitle">Ceremony</h3>
+      <p data-i18n-html="details.ceremonyBody">Begins at 5:30 PM<br>Please arrive by 5:00 PM</p>
+      <span class="tag" data-i18n="details.ceremonyTag">Followed by dinner</span>
+    </div>
+    <div class="detail-card surface-raised reveal-up" style="transition-delay:.2s">
+      <svg class="icon" viewBox="0 0 48 48" fill="none"><path d="M24 6C15.7 6 9 12.7 9 21C9 32 24 44 24 44C24 44 39 32 39 21C39 12.7 32.3 6 24 6Z" stroke="currentColor" stroke-width="1.4"/><circle cx="24" cy="21" r="5" stroke="currentColor" stroke-width="1.2"/></svg>
+      <h3 data-i18n="details.venueTitle">Venue</h3>
+      <p data-i18n-html="details.venueBody">Vazisubani Estate<br>Kakheti, Georgia</p>
+      <a href="https://maps.google.com/?q=Vazisubani+Estate" target="_blank" rel="noopener" class="tag" style="text-decoration:none;" data-i18n="details.mapLink">View on map &rarr;</a>
+    </div>
+  </div>
+</section>
+
+<!-- ================= SCHEDULE ================= -->
+<section class="surface section-pad">
+  <div class="max-w-3xl mx-auto text-center mb-16">
+    <p class="eyebrow-label" data-i18n="schedule.eyebrow">Order of the Evening</p>
+    <h2 class="h2-script mt-4" data-i18n="schedule.heading">Our Schedule</h2>
+  </div>
+  <div class="timeline">
+    <div class="t-item reveal-up">
+      <p class="t-time" data-i18n="schedule.time1">3:00 PM</p>
+      <div class="t-dot"></div>
+      <p class="t-label" data-i18n="schedule.label1">Hotel Check-in</p>
+    </div>
+    <div class="t-item reveal-up" style="transition-delay:.12s">
+      <p class="t-time" data-i18n="schedule.time2">5:00 PM</p>
+      <div class="t-dot"></div>
+      <p class="t-label" data-i18n="schedule.label2">Guest Arrival &amp; Welcome Drinks</p>
+    </div>
+    <div class="t-item reveal-up" style="transition-delay:.24s">
+      <p class="t-time" data-i18n="schedule.time3">5:30 PM</p>
+      <div class="t-dot"></div>
+      <p class="t-label" data-i18n="schedule.label3">Wedding Ceremony</p>
+    </div>
+    <div class="t-item reveal-up" style="transition-delay:.36s">
+      <p class="t-time" data-i18n="schedule.time4">6:30 PM</p>
+      <div class="t-dot"></div>
+      <p class="t-label" data-i18n="schedule.label4">Dinner</p>
+    </div>
+    <div class="t-item reveal-up" style="transition-delay:.48s">
+      <p class="t-time" data-i18n="schedule.time5">9:00 PM</p>
+      <div class="t-dot"></div>
+      <p class="t-label" data-i18n="schedule.label5">Dancing Under the Stars</p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= COUNTDOWN ================= -->
+<section class="countdown-band section-pad text-center">
+  <p class="eyebrow-label" style="color:var(--salmon);" data-i18n="countdown.eyebrow">Counting Down To</p>
+  <h2 class="h2-script mt-4" style="color:var(--paper);" data-i18n="countdown.heading">Our Wedding Day</h2>
+  <div class="cd-grid mt-14">
+    <div><div class="cd-num" id="cd-days">00</div><div class="cd-label" data-i18n="countdown.days">Days</div></div>
+    <div><div class="cd-num" id="cd-hours">00</div><div class="cd-label" data-i18n="countdown.hours">Hours</div></div>
+    <div><div class="cd-num" id="cd-mins">00</div><div class="cd-label" data-i18n="countdown.minutes">Minutes</div></div>
+    <div><div class="cd-num" id="cd-secs">00</div><div class="cd-label" data-i18n="countdown.seconds">Seconds</div></div>
+  </div>
+</section>
+
+<!-- ================= DRESS CODE ================= -->
+<section class="section-pad" style="background:var(--cream-deep);">
+  <div class="max-w-2xl mx-auto text-center">
+    <p class="eyebrow-label" data-i18n="dressCode.eyebrow">Attire</p>
+    <h2 class="h2-script mt-4" data-i18n="dressCode.heading">Dress Code</h2>
+    <p class="mt-8 text-[1.25rem] leading-[1.8] text-[#5a4440] normal-case tracking-normal" data-i18n="dressCode.body">
+      Summer Black Tie (Colors are welcome). Celebration takes place outdoors within the grounds of a historic chateau vineyard.
+    </p>
+  </div>
+</section>
+
+<!-- ================= RSVP ================= -->
+<section class="surface section-pad" id="rsvp">
+  <div class="max-w-xl mx-auto">
+    <div class="text-center mb-14">
+      <p class="eyebrow-label" data-i18n="rsvp.eyebrow">Kindly Respond By</p>
+      <p class="rsvp-deadline mt-2" data-i18n="rsvp.deadline">1 August 2026</p>
+      <h2 class="h2-script mt-4" data-i18n="rsvp.heading">RSVP</h2>
+    </div>
+    <form id="rsvpForm" class="surface-floating p-8 sm:p-12 space-y-8">
+      <div>
+        <label class="field-label" for="guest1Name" data-i18n="rsvp.guest1Label">Name and Surname &mdash; Guest 1</label>
+        <input class="field" id="guest1Name" name="guest1Name" type="text" placeholder="Guest 1 full name" data-i18n-placeholder="rsvp.guest1Placeholder" required>
+      </div>
+
+      <div>
+        <span class="field-question" data-i18n="rsvp.plusOneQuestion">Will you be bringing a plus one?</span>
+        <div class="radio-pill">
+          <input type="radio" id="plusOneYes" name="plusOne" value="yes" data-show="guest2Block">
+          <label for="plusOneYes" data-i18n="common.yes">Yes</label>
+          <input type="radio" id="plusOneNo" name="plusOne" value="no">
+          <label for="plusOneNo" data-i18n="common.no">No</label>
+        </div>
+        <div class="conditional-block" id="guest2Block" hidden>
+          <label class="field-label" for="guest2Name" data-i18n="rsvp.guest2Label">Name and Surname &mdash; Guest 2</label>
+          <input class="field" id="guest2Name" name="guest2Name" type="text" placeholder="Guest 2 full name" data-i18n-placeholder="rsvp.guest2Placeholder">
+
+          <button type="button" class="add-guest-btn" id="addGuest3Btn" data-i18n="rsvp.addGuest">+ Add another guest</button>
+
+          <div id="guest3Wrap" class="mt-6" hidden>
+            <label class="field-label" for="guest3Name" data-i18n="rsvp.guest3Label">Name and Surname &mdash; Guest 3</label>
+            <input class="field" id="guest3Name" name="guest3Name" type="text" placeholder="Guest 3 full name" data-i18n-placeholder="rsvp.guest3Placeholder">
+            <button type="button" class="add-guest-btn mt-3" id="addGuest4Btn" data-i18n="rsvp.addGuest">+ Add another guest</button>
+          </div>
+
+          <div id="guest4Wrap" class="mt-6" hidden>
+            <label class="field-label" for="guest4Name" data-i18n="rsvp.guest4Label">Name and Surname &mdash; Guest 4</label>
+            <input class="field" id="guest4Name" name="guest4Name" type="text" placeholder="Guest 4 full name" data-i18n-placeholder="rsvp.guest4Placeholder">
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <span class="field-question" data-i18n="rsvp.vazStayQuestion">Would you like to stay with us at Vazisubani Estate Hotel?</span>
+        <div class="radio-pill">
+          <input type="radio" id="vazStayYes" name="vazStay" value="yes" data-show="vazYesBlock">
+          <label for="vazStayYes" data-i18n="common.yes">Yes</label>
+          <input type="radio" id="vazStayNo" name="vazStay" value="no" data-show="vazNoBlock">
+          <label for="vazStayNo" data-i18n="common.no">No</label>
+        </div>
+
+        <div class="conditional-block" id="vazYesBlock" hidden>
+          <p class="conditional-note" data-i18n-html="rsvp.vazCostNote">There is a partial room cost of <strong>$200</strong>. Are you okay with this?</p>
+          <div class="radio-pill mt-3">
+            <input type="checkbox" id="vazCostYes" name="vazCostOk" value="yes" data-show="vazCostConfirmNote">
+            <label for="vazCostYes" data-i18n="common.yes">Yes</label>
+          </div>
+          <p class="conditional-note mt-3" id="vazCostConfirmNote" hidden data-i18n="rsvp.vazCostConfirm">We will confirm if the room is allocated to you, as we have high demand.</p>
+        </div>
+
+        <div class="conditional-block" id="vazNoBlock" hidden>
+          <p class="conditional-note" data-i18n="rsvp.vazNoNote">No problem at all &mdash; here are a few lovely hotels nearby, about a 30 minute drive from the venue:</p>
+          <ul class="hotel-list">
+            <li><a href="https://www.google.com/maps/place/Park+Hotel+Tsinandali/@41.8993636,45.5654102,17z/data=!4m10!3m9!1s0x4045d35fc0212fb5:0xef778c5d8bc32919!5m3!1s2026-07-07!4m1!1i2!8m2!3d41.8993596!4d45.5679851!16s%2Fg%2F11h5579lhz?entry=ttu&amp;g_ep=EgoyMDI2MDYyOS4wIKXMDSoASAFQAw%3D%3D" target="_blank" rel="noopener">Park Hotel Tsinandali &rarr;</a><span class="hotel-tag" data-i18n="rsvp.budgetTag">Best Budget Alternative</span></li>
+            <li><a href="https://www.google.com/maps/place/Panorama+Kakheti+Resort/@41.782881,45.6803263,13z/data=!4m13!1m2!2m1!1sHotels!3m9!1s0x404680a166662b89:0x316608ce600ba286!5m2!4m1!1i2!8m2!3d41.782881!4d45.756544!15sCgZIb3RlbHOSAQVob3RlbKoBOhABKgoiBmhvdGVscygAMh4QASIainsixGVQ51rDIRxGAWYdQunD1rZjbCyu2qAyChACIgZob3RlbHPgAQA!16s%2Fg%2F11vljzm7k4?entry=ttu&amp;g_ep=EgoyMDI2MDYyOS4wIKXMDSoASAFQAw%3D%3D" target="_blank" rel="noopener">Panorama Kakheti Resort &rarr;</a></li>
+            <li><a href="https://www.google.com/maps/place/The+Wine+Station/@41.8854282,45.6061493,12.66z/data=!4m21!1m9!2m8!1sHotels!5m5!5m3!1s2026-07-07!4m1!1i2!16i284!6e3!3m10!1s0x4045d31dbd129157:0x1aebd94e7d54bfbf!5m3!1s2026-07-07!4m1!1i2!8m2!3d41.899118!4d45.594782!15sCgZIb3RlbHOSAQVob3RlbKoBOhABKgoiBmhvdGVscygAMh4QASIainsixGVQ51rDIRxGAWYdQunD1rZjbCyu2qAyChACIgZob3RlbHPgAQA!16s%2Fg%2F11mkjmwm5l?entry=ttu&amp;g_ep=EgoyMDI2MDYyOS4wIKXMDSoASAFQAw%3D%3D" target="_blank" rel="noopener">The Wine Station &rarr;</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div>
+        <span class="field-question" data-i18n="rsvp.day2Question">Would you like to stay in the hotel for a 2nd night (18th Sep)?</span>
+        <div class="radio-pill">
+          <input type="radio" id="day2Yes" name="day2Stay" value="yes" data-show="day2YesBlock">
+          <label for="day2Yes" data-i18n="common.yes">Yes</label>
+          <input type="radio" id="day2No" name="day2Stay" value="no">
+          <label for="day2No" data-i18n="common.no">No</label>
+        </div>
+        <div class="conditional-block" id="day2YesBlock" hidden>
+          <p class="conditional-note" data-i18n-html="rsvp.day2Note">The hotel for Day 2 will cost <strong>$380</strong> per night, including breakfast.</p>
+        </div>
+      </div>
+
+      <div>
+        <span class="field-question" data-i18n="rsvp.transportQuestion">Will you need transportation to arrive at the hotel?</span>
+        <div class="radio-pill">
+          <input type="radio" id="transportYes" name="transport" value="yes" data-show="transportYesBlock">
+          <label for="transportYes" data-i18n="common.yes">Yes</label>
+          <input type="radio" id="transportNo" name="transport" value="no">
+          <label for="transportNo" data-i18n="common.no">No</label>
+        </div>
+        <div class="conditional-block" id="transportYesBlock" hidden>
+          <p class="conditional-note" data-i18n="rsvp.transportNote">We will contact you separately to share transportation details.</p>
+        </div>
+      </div>
+
+      <div>
+        <span class="field-question" data-i18n="rsvp.dietaryQuestion">Do you have any dietary requirements?</span>
+        <div class="radio-pill">
+          <input type="radio" id="dietaryYes" name="dietary" value="yes" data-show="dietaryBlock">
+          <label for="dietaryYes" data-i18n="common.yes">Yes</label>
+          <input type="radio" id="dietaryNo" name="dietary" value="no">
+          <label for="dietaryNo" data-i18n="common.no">No</label>
+        </div>
+        <div class="conditional-block" id="dietaryBlock" hidden>
+          <label class="field-label" for="dietaryNotes" data-i18n="rsvp.dietaryNotesLabel">Please tell us what you need</label>
+          <textarea class="field" id="dietaryNotes" name="dietaryNotes" rows="3" placeholder="Allergies, intolerances, preferences..." data-i18n-placeholder="rsvp.dietaryNotesPlaceholder"></textarea>
+        </div>
+      </div>
+
+      <div class="text-center pt-4">
+        <button type="submit" class="btn" data-i18n="rsvp.send">Send RSVP</button>
+      </div>
+    </form>
+
+    <div class="rsvp-success surface-floating" id="rsvpSuccess" hidden>
+      <div class="rsvp-success-check">
+        <svg viewBox="0 0 52 52"><path d="M14 27l7 7 17-17"/></svg>
+      </div>
+      <p class="h2-script" data-i18n="rsvp.thankYou">Thank You</p>
+      <p class="rsvp-success-text" data-i18n-html="rsvp.successText">Your RSVP has been received.<br>We are looking forward to seeing you at our Wedding.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FOOTER ================= -->
+<footer class="footer section-pad text-center">
+  <p class="monogram script">T &amp; K</p>
+  <p class="mt-4" style="font-family:var(--font-heading); letter-spacing:.4em; font-size:.68rem; opacity:.85;">
+    17 &middot; 09 &middot; 2026 &nbsp;&mdash;&nbsp; <span data-i18n="hero.venue">Vazisubani Estate</span>
+  </p>
+  <div class="divider" style="background:linear-gradient(90deg, transparent, var(--salmon), transparent);"></div>
+  <p style="font-family:var(--font-heading); font-size:.6rem; letter-spacing:.3em; opacity:.6;" data-i18n="footer.tagline">We can&rsquo;t wait to celebrate with you</p>
+</footer>
+
+<!-- ================= THEME PREVIEW TOOL (remove this block before sharing with guests) ================= -->
+<button class="theme-toggle" id="themeToggle" type="button" title="Preview color palette" aria-label="Preview color palette">&#127912;</button>
+<div class="theme-panel" id="themePanel">
+  <h4>Theme Preview</h4>
+  <p class="theme-sub">Live-edit the palette to try different looks. Changes are saved in this browser only &mdash; send me the values you like and I'll make them permanent.</p>
+  <div id="themeRows"></div>
+  <div class="theme-actions">
+    <button type="button" id="themeReset">Reset</button>
+    <button type="button" id="themeCopy">Copy CSS</button>
+  </div>
+  <textarea class="theme-copy-box" id="themeCopyBox" readonly rows="6"></textarea>
+</div>
+
+<script>
+  // ---------- Language switcher / translations (EN / RU / KA) ----------
+  (function(){
+    var TRANSLATIONS = {
+      en: {
+        meta: { title: "Tato & Khrystyna — 17 September 2026" },
+        hero: { topLabel: "Wedding Invitation", venue: "Vazisubani Estate", date: "17 September 2026", scroll: "Scroll" },
+        welcome: {
+          eyebrow: "Save the Date",
+          heading: "With hearts full of love",
+          body: "Tato and Khrystyna joyfully invite you to celebrate the beginning of our forever. Join us for an evening of love, laughter, and unforgettable memories set among the vineyards of Vazisubani Estate.",
+          gift: "Please do not bring any presents — your presence at our wedding is the gift for us."
+        },
+        details: {
+          eyebrow: "The Details", heading: "When & Where",
+          dateTitle: "The Date", dateBody: "Thursday<br>17 September 2026", dateTag: "Mark your calendar",
+          ceremonyTitle: "Ceremony", ceremonyBody: "Begins at 5:30 PM<br>Please arrive by 5:00 PM", ceremonyTag: "Followed by dinner",
+          venueTitle: "Venue", venueBody: "Vazisubani Estate<br>Kakheti, Georgia", mapLink: "View on map →"
+        },
+        schedule: {
+          eyebrow: "Order of the Evening", heading: "Our Schedule",
+          time1: "3:00 PM", label1: "Hotel Check-in",
+          time2: "5:00 PM", label2: "Guest Arrival & Welcome Drinks",
+          time3: "5:30 PM", label3: "Wedding Ceremony",
+          time4: "6:30 PM", label4: "Dinner",
+          time5: "9:00 PM", label5: "Dancing Under the Stars"
+        },
+        countdown: { eyebrow: "Counting Down To", heading: "Our Wedding Day", days: "Days", hours: "Hours", minutes: "Minutes", seconds: "Seconds" },
+        dressCode: {
+          eyebrow: "Attire", heading: "Dress Code",
+          body: "Summer Black Tie (Colors are welcome). Celebration takes place outdoors within the grounds of a historic chateau vineyard."
+        },
+        rsvp: {
+          eyebrow: "Kindly Respond By", deadline: "1 August 2026", heading: "RSVP",
+          guest1Label: "Name and Surname — Guest 1", guest1Placeholder: "Guest 1 full name",
+          plusOneQuestion: "Will you be bringing a plus one?",
+          guest2Label: "Name and Surname — Guest 2", guest2Placeholder: "Guest 2 full name",
+          addGuest: "+ Add another guest",
+          guest3Label: "Name and Surname — Guest 3", guest3Placeholder: "Guest 3 full name",
+          guest4Label: "Name and Surname — Guest 4", guest4Placeholder: "Guest 4 full name",
+          vazStayQuestion: "Would you like to stay with us at Vazisubani Estate Hotel?",
+          vazCostNote: "There is a partial room cost of <strong>$200</strong>. Are you okay with this?",
+          vazCostConfirm: "We will confirm if the room is allocated to you, as we have high demand.",
+          vazNoNote: "No problem at all — here are a few lovely hotels nearby, about a 30 minute drive from the venue:",
+          budgetTag: "Best Budget Alternative",
+          day2Question: "Would you like to stay in the hotel for a 2nd night (18th Sep)?",
+          day2Note: "The hotel for Day 2 will cost <strong>$380</strong> per night, including breakfast.",
+          transportQuestion: "Will you need transportation to arrive at the hotel?",
+          transportNote: "We will contact you separately to share transportation details.",
+          dietaryQuestion: "Do you have any dietary requirements?",
+          dietaryNotesLabel: "Please tell us what you need", dietaryNotesPlaceholder: "Allergies, intolerances, preferences...",
+          send: "Send RSVP", thankYou: "Thank You",
+          successText: "Your RSVP has been received.<br>We are looking forward to seeing you at our Wedding."
+        },
+        footer: { tagline: "We can't wait to celebrate with you" },
+        common: { yes: "Yes", no: "No" }
+      },
+      uk: {
+        meta: { title: "Тато та Христина — 17 вересня 2026" },
+        hero: { topLabel: "Запрошення на весілля", venue: "Маєток Вазісубані", date: "17 вересня 2026", scroll: "Прогорніть" },
+        welcome: {
+          eyebrow: "Збережіть дату",
+          heading: "З серцями, повними любові",
+          body: "Тато та Христина з радістю запрошують вас відсвяткувати початок нашої історії назавжди. Приєднуйтесь до вечора любові, сміху та незабутніх спогадів серед виноградників маєтку Вазісубані.",
+          gift: "Будь ласка, не приносьте подарунків — ваша присутність на нашому весіллі є найціннішим подарунком для нас."
+        },
+        details: {
+          eyebrow: "Деталі", heading: "Коли і де",
+          dateTitle: "Дата", dateBody: "Четвер<br>17 вересня 2026", dateTag: "Відзначте в календарі",
+          ceremonyTitle: "Церемонія", ceremonyBody: "Початок о 17:30<br>Просимо прибути до 17:00", ceremonyTag: "Далі — вечеря",
+          venueTitle: "Місце проведення", venueBody: "Маєток Вазісубані<br>Кахетія, Грузія", mapLink: "Переглянути на карті →"
+        },
+        schedule: {
+          eyebrow: "Порядок вечора", heading: "Розклад",
+          time1: "15:00", label1: "Заїзд у готель",
+          time2: "17:00", label2: "Зустріч гостей та вітальні напої",
+          time3: "17:30", label3: "Весільна церемонія",
+          time4: "18:30", label4: "Вечеря",
+          time5: "21:00", label5: "Танці під зорями"
+        },
+        countdown: { eyebrow: "Зворотний відлік до", heading: "Дня нашого весілля", days: "Дні", hours: "Години", minutes: "Хвилини", seconds: "Секунди" },
+        dressCode: {
+          eyebrow: "Дрес-код", heading: "Дрес-код",
+          body: "Літній стиль Black Tie (яскраві кольори вітаються). Свято відбувається просто неба, на території історичного винного шато."
+        },
+        rsvp: {
+          eyebrow: "Просимо відповісти до", deadline: "1 серпня 2026", heading: "Підтвердження присутності",
+          guest1Label: "Ім'я та прізвище — Гість 1", guest1Placeholder: "Повне ім'я гостя 1",
+          plusOneQuestion: "Чи будете ви з супроводом?",
+          guest2Label: "Ім'я та прізвище — Гість 2", guest2Placeholder: "Повне ім'я гостя 2",
+          addGuest: "+ Додати ще одного гостя",
+          guest3Label: "Ім'я та прізвище — Гість 3", guest3Placeholder: "Повне ім'я гостя 3",
+          guest4Label: "Ім'я та прізвище — Гість 4", guest4Placeholder: "Повне ім'я гостя 4",
+          vazStayQuestion: "Чи хотіли б ви зупинитися в готелі маєтку Вазісубані?",
+          vazCostNote: "Часткова вартість номера становить <strong>$200</strong>. Вас це влаштовує?",
+          vazCostConfirm: "Ми підтвердимо бронювання номера додатково, оскільки попит дуже високий.",
+          vazNoNote: "Не проблема — ось кілька чудових готелів поруч, приблизно за 30 хвилин їзди від місця проведення:",
+          budgetTag: "Найкращий бюджетний варіант",
+          day2Question: "Чи хотіли б ви залишитися в готелі на другу ніч (18 вересня)?",
+          day2Note: "Вартість номера на другу ніч — <strong>$380</strong>, включно зі сніданком.",
+          transportQuestion: "Чи потрібен вам трансфер до готелю?",
+          transportNote: "Ми зв'яжемося з вами окремо, щоб повідомити деталі трансферу.",
+          dietaryQuestion: "Чи маєте ви особливі побажання щодо харчування?",
+          dietaryNotesLabel: "Будь ласка, напишіть, що вам потрібно", dietaryNotesPlaceholder: "Алергії, непереносимість, уподобання...",
+          send: "Надіслати", thankYou: "Дякуємо",
+          successText: "Вашу відповідь отримано.<br>Ми з нетерпінням чекаємо зустрічі з вами на нашому весіллі."
+        },
+        footer: { tagline: "Ми не можемо дочекатися, щоб відсвяткувати разом з вами" },
+        common: { yes: "Так", no: "Ні" }
+      },
+      ka: {
+        meta: { title: "ტატო და კრისტინა — 2026 წლის 17 სექტემბერი" },
+        hero: { topLabel: "საქორწილო მოწვევა", venue: "ვაზისუბნის მამული", date: "2026 წლის 17 სექტემბერი", scroll: "ჩასქროლე" },
+        welcome: {
+          eyebrow: "შეინახეთ თარიღი",
+          heading: "სიყვარულით სავსე გულებით",
+          body: "ტატო და კრისტინა სიხარულით გიწვევთ ჩვენი ცხოვრების ერთ-ერთ ყველაზე მნიშვნელოვან დღეს. გაიზიარეთ ჩვენი ბედნიერება და შემოგვიერთდით დაუვიწყარი მოგონებებით სავსე საღამოს, ვაზისუბნის მამულის ვენახებში.",
+          gift: "საჩუქრები საჭირო არ არის — თქვენი დასწრება ჩვენთვის ყველაზე ძვირფასი საჩუქარია."
+        },
+        details: {
+          eyebrow: "დეტალები", heading: "სად და როდის",
+          dateTitle: "თარიღი", dateBody: "ხუთშაბათი<br>2026 წლის 17 სექტემბერი", dateTag: "მონიშნეთ კალენდარში",
+          ceremonyTitle: "ცერემონია", ceremonyBody: "იწყება 17:30 საათზე, გთხოვთ მობრძანდეთ არა უგვიანეს 17:00 საათისა", ceremonyTag: "შემდეგ — სადილი",
+          venueTitle: "ადგილმდებარეობა", venueBody: "ვაზისუბნის მამული<br>კახეთი, საქართველო", mapLink: "იხილეთ რუკაზე →"
+        },
+        schedule: {
+          eyebrow: "საღამოს პროგრამა", heading: "საღამოს განრიგი",
+          time1: "15:00", label1: "სასტუმროში ჩექინი",
+          time2: "17:00", label2: "სტუმრების მობრძანება და სასმელები",
+          time3: "17:30", label3: "საქორწილო ცერემონია",
+          time4: "18:30", label4: "სადილი",
+          time5: "21:00", label5: "წვეულება"
+        },
+        countdown: { eyebrow: "ათვლა იწყება", heading: "ქორწილამდე დარჩენილია", days: "დღე", hours: "საათი", minutes: "წუთი", seconds: "წამი" },
+        dressCode: {
+          eyebrow: "სამოსის კოდი", heading: "დრეს კოდი",
+          body: "Summer Black Tie (ფერადი სამოსი მისასალმებელია). ზეიმი გაიმართება ღია ცის ქვეშ, ისტორიული შატოს ვენახის ტერიტორიაზე."
+        },
+        rsvp: {
+          eyebrow: "გთხოვთ გვიპასუხოთ", deadline: "2026 წლის 1 აგვისტომდე", heading: "დასწრების დადასტურება",
+          guest1Label: "სახელი და გვარი — სტუმარი 1", guest1Placeholder: "სტუმარი 1-ის სრული სახელი",
+          plusOneQuestion: "გეყოლებათ თანმხლები პირი?",
+          guest2Label: "სახელი და გვარი — სტუმარი 2", guest2Placeholder: "სტუმარი 2-ის სრული სახელი",
+          addGuest: "+ კიდევ ერთი სტუმრის დამატება",
+          guest3Label: "სახელი და გვარი — სტუმარი 3", guest3Placeholder: "სტუმარი 3-ის სრული სახელი",
+          guest4Label: "სახელი და გვარი — სტუმარი 4", guest4Placeholder: "სტუმარი 4-ის სრული სახელი",
+          vazStayQuestion: "გსურთ დარჩეთ ვაზისუბნის მამულის სასტუმროში?",
+          vazCostNote: "ოთახის ღირებულების ნაწილი შეადგენს <strong>$200</strong>-ს. თანახმა ხართ თუ არა?",
+          vazCostConfirm: "დაგიდასტურებთ ოთახის გამოყოფას, რადგან მოთხოვნა ძალიან მაღალია.",
+          vazNoNote: "გთავაზობთ ალტერნატიურ ახლომდებარე სასტუმროებს, მამულიდან 30 წუთის სავალზე:",
+          budgetTag: "საუკეთესო ბიუჯეტური ვარიანტი",
+          day2Question: "გსურთ დარჩეთ სასტუმროში მეორე ღამითაც (18 სექტემბერი)?",
+          day2Note: "მეორე ღამის ღირებულებაა <strong>$380</strong>, საუზმის ჩათვლით.",
+          transportQuestion: "დაგჭირდებათ ტრანსპორტი სასტუმრომდე ჩამოსასვლელად?",
+          transportNote: "დაგიკავშირდებით ცალკე ტრანსპორტის დეტალების გასაზიარებლად.",
+          dietaryQuestion: "გაქვთ კვებითი შეზღუდვები?",
+          dietaryNotesLabel: "გთხოვთ მოგვწეროთ, რა გჭირდებათ", dietaryNotesPlaceholder: "ალერგია, აუტანლობა, პრეფერენციები...",
+          send: "გაგზავნა", thankYou: "გმადლობთ",
+          successText: "თქვენი პასუხი მიღებულია.<br>მოუთმენლად ველით თქვენთან შეხვედრას ჩვენს ქორწილში."
+        },
+        footer: { tagline: "მოუთმენლად ველით თქვენთან ერთად აღნიშვნას" },
+        common: { yes: "დიახ", no: "არა" }
+      }
+    };
+
+    var STORAGE_KEY = 'weddingLang';
+    var switcher = document.getElementById('langSwitcher');
+    if(!switcher) return;
+
+    function getNested(obj, key){
+      return key.split('.').reduce(function(o, k){ return (o && o[k] !== undefined) ? o[k] : undefined; }, obj);
+    }
+
+    function applyLanguage(lang){
+      var dict = TRANSLATIONS[lang] || TRANSLATIONS.en;
+      document.documentElement.lang = lang;
+      var title = getNested(dict, 'meta.title');
+      if(title) document.title = title;
+
+      document.querySelectorAll('[data-i18n]').forEach(function(el){
+        var val = getNested(dict, el.getAttribute('data-i18n'));
+        if(val !== undefined) el.textContent = val;
+      });
+      document.querySelectorAll('[data-i18n-html]').forEach(function(el){
+        var val = getNested(dict, el.getAttribute('data-i18n-html'));
+        if(val !== undefined) el.innerHTML = val;
+      });
+      document.querySelectorAll('[data-i18n-placeholder]').forEach(function(el){
+        var val = getNested(dict, el.getAttribute('data-i18n-placeholder'));
+        if(val !== undefined) el.placeholder = val;
+      });
+
+      switcher.querySelectorAll('.lang-btn').forEach(function(btn){
+        btn.classList.toggle('active', btn.getAttribute('data-lang') === lang);
+      });
+      try{ localStorage.setItem(STORAGE_KEY, lang); } catch(e){ /* ignore */ }
+    }
+
+    switcher.querySelectorAll('.lang-btn').forEach(function(btn){
+      btn.addEventListener('click', function(){ applyLanguage(btn.getAttribute('data-lang')); });
+    });
+
+    var saved = null;
+    try{ saved = localStorage.getItem(STORAGE_KEY); } catch(e){ /* ignore */ }
+    applyLanguage(saved && TRANSLATIONS[saved] ? saved : 'en');
+  })();
+
+  // ---------- Hero auto zoom-out reveal (plays once, on load) ----------
+  (function(){
+    var hero = document.getElementById('hero');
+    if(!hero) return;
+
+    if(window.matchMedia('(prefers-reduced-motion: reduce)').matches){
+      hero.classList.add('zoomed');
+      return;
+    }
+    // brief pause so visitors see the small window before it zooms out
+    setTimeout(function(){ hero.classList.add('zoomed'); }, 650);
+  })();
+
+  // ---------- Hero image frame sizing ----------
+  // Sizes .hero-bg-frame to exactly match the picture's real contain-fit box
+  // (given its true aspect ratio), so the edge fade mask on the frame always
+  // lines up with the actual picture edge instead of a fixed % of the hero box.
+  (function(){
+    var sticky = document.getElementById('heroSticky');
+    var frame = document.getElementById('heroBgFrame');
+    var img = document.getElementById('heroBg');
+    if(!sticky || !frame || !img) return;
+
+    var SIZE_FACTOR = 0.7; // shrink the picture within its contain-fit box
+
+    function sizeFrame(){
+      var cw = sticky.clientWidth, ch = sticky.clientHeight;
+      var naturalW = img.naturalWidth, naturalH = img.naturalHeight;
+      if(!cw || !ch || !naturalW || !naturalH) return;
+      var imgRatio = naturalW / naturalH;
+      var containerRatio = cw / ch;
+      var w, h;
+      if(containerRatio > imgRatio){ h = ch; w = ch * imgRatio; }
+      else { w = cw; h = cw / imgRatio; }
+      frame.style.width = (w * SIZE_FACTOR) + 'px';
+      frame.style.height = (h * SIZE_FACTOR) + 'px';
+    }
+
+    if(img.complete) sizeFrame();
+    img.addEventListener('load', sizeFrame);
+    window.addEventListener('resize', sizeFrame);
+  })();
+
+  // ---------- Scroll reveal ----------
+  (function(){
+    var items = document.querySelectorAll('.reveal-up');
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if(entry.isIntersecting){ entry.target.classList.add('in'); io.unobserve(entry.target); }
+      });
+    }, { threshold: 0.2 });
+    items.forEach(function(el){ io.observe(el); });
+  })();
+
+  // ---------- Countdown ----------
+  (function(){
+    var target = new Date('2026-09-17T17:00:00');
+    var d = document.getElementById('cd-days');
+    var h = document.getElementById('cd-hours');
+    var m = document.getElementById('cd-mins');
+    var s = document.getElementById('cd-secs');
+    function pad(n){ return String(n).padStart(2,'0'); }
+    function tick(){
+      var diff = target - new Date();
+      if(diff < 0) diff = 0;
+      var days = Math.floor(diff / 86400000);
+      var hours = Math.floor((diff % 86400000) / 3600000);
+      var mins = Math.floor((diff % 3600000) / 60000);
+      var secs = Math.floor((diff % 60000) / 1000);
+      d.textContent = pad(days); h.textContent = pad(hours); m.textContent = pad(mins); s.textContent = pad(secs);
+    }
+    tick();
+    setInterval(tick, 1000);
+  })();
+
+  // ---------- RSVP conditional questions ----------
+  (function(){
+    var groups = {};
+    document.querySelectorAll('#rsvpForm input[type="radio"], #rsvpForm input[type="checkbox"]').forEach(function(input){
+      (groups[input.name] = groups[input.name] || []).push(input);
+    });
+    Object.keys(groups).forEach(function(name){
+      groups[name].forEach(function(input){
+        input.addEventListener('change', function(){
+          groups[name].forEach(function(other){
+            var blockId = other.getAttribute('data-show');
+            if(!blockId) return;
+            var block = document.getElementById(blockId);
+            if(block) block.hidden = !other.checked;
+          });
+        });
+      });
+    });
+  })();
+
+  // ---------- RSVP additional guests (3rd & 4th) ----------
+  (function(){
+    function wireAddGuest(btnId, wrapId){
+      var btn = document.getElementById(btnId);
+      var wrap = document.getElementById(wrapId);
+      if(!btn || !wrap) return;
+      btn.addEventListener('click', function(){
+        wrap.hidden = false;
+        btn.hidden = true;
+      });
+    }
+    wireAddGuest('addGuest3Btn', 'guest3Wrap');
+    wireAddGuest('addGuest4Btn', 'guest4Wrap');
+  })();
+
+  // ---------- RSVP (submits to a Google Sheet via Apps Script) ----------
+  (function(){
+    // Deploy google-apps-script/Code.gs as a Web App (Execute as: me, Access: Anyone),
+    // then paste the deployment URL here.
+    var SHEET_ENDPOINT = 'PASTE_YOUR_APPS_SCRIPT_WEB_APP_URL_HERE';
+
+    var form = document.getElementById('rsvpForm');
+    form.addEventListener('submit', function(e){
+      e.preventDefault();
+
+      if(SHEET_ENDPOINT.indexOf('PASTE_YOUR_') === -1){
+        var payload = {};
+        new FormData(form).forEach(function(value, key){ payload[key] = value; });
+        // no-cors: Apps Script Web Apps don't answer CORS preflights, so the response
+        // is opaque — this is a best-effort fire-and-forget submission.
+        fetch(SHEET_ENDPOINT, {
+          method: 'POST',
+          mode: 'no-cors',
+          headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+          body: JSON.stringify(payload)
+        }).catch(function(err){ console.error('RSVP could not reach the Google Sheet:', err); });
+      } else {
+        console.warn('RSVP Google Sheet endpoint not configured yet — this response was not saved.');
+      }
+
+      form.querySelectorAll('input, textarea, button').forEach(function(el){ el.disabled = true; });
+      form.classList.add('rsvp-hide');
+      setTimeout(function(){
+        form.hidden = true;
+        document.getElementById('rsvpSuccess').hidden = false;
+      }, 500);
+    });
+  })();
+
+  // ---------- Theme preview tool (remove before sharing with guests) ----------
+  (function(){
+    var VARS = [
+      { name: '--brick',          label: 'Burgundy (borders, accents)', fallback: '#8C2A26' },
+      { name: '--plum',           label: 'Plum (headings, buttons)',    fallback: '#5C2438' },
+      { name: '--plum-deep',      label: 'Plum Deep (footer, bands)',   fallback: '#3E1726' },
+      { name: '--terracotta',     label: 'Terracotta',                  fallback: '#C9713E' },
+      { name: '--terracotta-deep',label: 'Terracotta Deep',             fallback: '#A85A30' },
+      { name: '--salmon',         label: 'Salmon',                      fallback: '#E9998E' },
+      { name: '--blush',          label: 'Blush',                       fallback: '#D8B5B7' },
+      { name: '--taupe',          label: 'Taupe',                       fallback: '#C9BAB2' },
+      { name: '--cream',          label: 'Cream (background)',          fallback: '#F6EEE7' },
+      { name: '--cream-deep',     label: 'Cream Deep',                  fallback: '#EFE2D8' },
+      { name: '--paper',          label: 'Paper',                       fallback: '#F4EDE4' },
+      { name: '--ink',            label: 'Ink (body text)',             fallback: '#3A1A17' }
+    ];
+    var STORAGE_KEY = 'weddingThemeOverrides';
+    var root = document.documentElement;
+    var rowsEl = document.getElementById('themeRows');
+    var toggle = document.getElementById('themeToggle');
+    var panel = document.getElementById('themePanel');
+    var resetBtn = document.getElementById('themeReset');
+    var copyBtn = document.getElementById('themeCopy');
+    var copyBox = document.getElementById('themeCopyBox');
+    if(!rowsEl || !toggle || !panel) return;
+
+    function hexOf(varName, fallback){
+      var val = getComputedStyle(root).getPropertyValue(varName).trim();
+      return val || fallback;
+    }
+
+    function applyVar(varName, value){
+      root.style.setProperty(varName, value);
+    }
+
+    function saveOverrides(){
+      var overrides = {};
+      VARS.forEach(function(v){
+        var current = root.style.getPropertyValue(v.name).trim();
+        if(current) overrides[v.name] = current;
+      });
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(overrides));
+    }
+
+    function loadOverrides(){
+      try{
+        var saved = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}');
+        Object.keys(saved).forEach(function(name){ applyVar(name, saved[name]); });
+      } catch(e){ /* ignore corrupt storage */ }
+    }
+
+    function buildRows(){
+      VARS.forEach(function(v){
+        var row = document.createElement('div');
+        row.className = 'theme-row';
+
+        var label = document.createElement('label');
+        label.setAttribute('for', 'themeInput-' + v.name);
+        label.textContent = v.label;
+
+        var input = document.createElement('input');
+        input.type = 'color';
+        input.id = 'themeInput-' + v.name;
+        input.value = hexOf(v.name, v.fallback);
+
+        input.addEventListener('input', function(){
+          applyVar(v.name, input.value);
+          saveOverrides();
+        });
+
+        row.appendChild(label);
+        row.appendChild(input);
+        rowsEl.appendChild(row);
+      });
+    }
+
+    function resetAll(){
+      VARS.forEach(function(v){ root.style.removeProperty(v.name); });
+      localStorage.removeItem(STORAGE_KEY);
+      rowsEl.innerHTML = '';
+      buildRows();
+      copyBox.classList.remove('open');
+    }
+
+    function copyCss(){
+      var lines = VARS.map(function(v){
+        return '  ' + v.name + ': ' + hexOf(v.name, v.fallback) + ';';
+      });
+      var css = ':root{\n' + lines.join('\n') + '\n}';
+      copyBox.value = css;
+      copyBox.classList.add('open');
+      copyBox.focus();
+      copyBox.select();
+      if(navigator.clipboard){
+        navigator.clipboard.writeText(css).catch(function(){ /* fall back to manual copy from the textarea */ });
+      }
+    }
+
+    loadOverrides();
+    buildRows();
+
+    toggle.addEventListener('click', function(){ panel.classList.toggle('open'); });
+    resetBtn.addEventListener('click', resetAll);
+    copyBtn.addEventListener('click', copyCss);
+  })();
+</script>
+</body>
+</html>
